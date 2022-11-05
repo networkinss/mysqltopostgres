@@ -12,10 +12,13 @@ Python 3.5
 
 # Fork
 
-This has been forked from: https://github.com/Megachell/mysql-to-postgres  
-to git@github.com:networkinss/mysql-to-postgres.git  
-I need a python script which I can integrate into other projects.   
-And I need to have the output in a file (and not executed).  
-Some adjustments and additions are needed as well.  
+This has been forked from: 
+https://github.com/Megachell/mysql-to-postgres  
+to 
+https://github.com/networkinss/mysql-to-postgres.git  
+Reason is the need of a python script which can be easily integrated into other projects.   
+Some adjustments and additions were needed as well.  
+So now the integration is very simple. Just copy the file migrate.py into your own project
+and import/use "Migrate" as a normal Python class.
 
 
