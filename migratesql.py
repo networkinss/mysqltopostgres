@@ -146,7 +146,7 @@ class Migrate:
                     continue
             elif sql_line.startswith("CREATE DATABASE "):
                 # CREATE DATABASE IF NOT EXISTS core DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-                # CREATE DATABASE "scratch" WITH OWNER "postgres" ENCODING 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8';
+                # CREATE DATABASE "demoapp" WITH OWNER "root" ENCODING 'UTF8' LC_COLLATE = 'en_US.utf8' LC_CTYPE = 'en_US.utf8';
                 l = 0
                 if sql_line.startswith("CREATE DATABASE IF NOT EXISTS "):
                     l = 30
@@ -157,7 +157,7 @@ class Migrate:
                 for dbname in tokens:
                     if not dbname == '':
                         break
-                sql_line = 'CREATE DATABASE ' + dbname + ' WITH OWNER "postgres" ENCODING \'UTF8\' LC_COLLATE = \'en_US.UTF-8\' LC_CTYPE = \'en_US.UTF-8\';'
+                sql_line = 'CREATE DATABASE ' + dbname + ' WITH OWNER "root" ENCODING \'UTF8\' LC_COLLATE = \'en_US.utf8\' LC_CTYPE = \'en_US.utf8\';'
 
             else:
                 sql_line = line.replace("`", "")
