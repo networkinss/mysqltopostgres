@@ -31,18 +31,21 @@ class Migrate:
         querycount = 0  # number of query rows
         table_statement = ""
         enum_types_statements = ""
+        dbname = ""
         num_enum_types = 0
         tablefound = False
 
         for line in Lines:
 
             sql_line = line.replace("`", '"')
-            # sql_line = sql_line.upper()
             if sql_line.startswith("CREATE TABLE") or tablefound:
                 if not tablefound:
                     print("Table found")
-                tablefound = True
                 schemacount += 1
+
+                if not tablefound:
+                    tablefound = True
+                    sql_line = sql_line.replace(dbname, "public")
 
                 if "ENGINE" in sql_line or "DEFAULT CHARSET" in sql_line in sql_line:
                     if sql_line.startswith(")") and ";" in sql_line:
@@ -154,10 +157,11 @@ class Migrate:
                     l = 16
                 sql_line = sql_line[l:len(sql_line)]
                 tokens = sql_line.split(" ")
-                for dbname in tokens:
-                    if not dbname == '':
+                for x in tokens:
+                    if not x == '':
+                        dbname = x
                         break
-                sql_line = 'CREATE DATABASE ' + dbname + ' WITH OWNER "root" ENCODING \'UTF8\' LC_COLLATE = \'en_US.utf8\' LC_CTYPE = \'en_US.utf8\';'
+                sql_line = '-- CREATE DATABASE ' + dbname + ' WITH OWNER "root" ENCODING \'UTF8\' LC_COLLATE = \'en_US.utf8\' LC_CTYPE = \'en_US.utf8\';'
 
             else:
                 sql_line = line.replace("`", "")
