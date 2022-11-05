@@ -1,18 +1,18 @@
 class Migrate:
 
-    def extract_enum_statement(s):
+    def extract_enum_statement(self, s):
         if "enum" in s:
             ret = [i for i in s.split(" ") if "enum" in i][0]
             return ret
         else:
             return ""
 
-    def compose_enum_type(enum_statement, n):
+    def compose_enum_type(self, enum_statement, n):
         enteries = enum_statement.replace("enum", "")
         enum_type = f"CREATE TYPE enum_{n} as ENUM {enteries};\n"
         return enum_type
 
-    def add_escape_char(s):
+    def add_escape_char(self, s):
         words = s.split("'")
         for i, word in enumerate(words):
             if "\\" in word:
@@ -44,7 +44,7 @@ class Migrate:
                 tablefound = True
                 schemacount += 1
 
-                if "ENGINE" in sql_line or "DEFAULT CHARSET" in sql_line or "COLLATE" in sql_line:
+                if "ENGINE" in sql_line or "DEFAULT CHARSET" in sql_line in sql_line:
                     if sql_line.startswith(")") and ";" in sql_line:
                         sql_line = ");\n"
                         tablefound = False
