@@ -1,6 +1,6 @@
 import os
 
-from migrate import Migrate
+from migratesql import Migrate
 
 print("Start migration from Mysql to Postgresql")
 rootdir = "mysql/"
