@@ -1,0 +1,7 @@
+.openapi-generator-ignore
+Model/Customer.sql
+Model/ErrorModel.sql
+Model/Invoice.sql
+Model/Pet.sql
+README.md
+mysql_schema.sql
